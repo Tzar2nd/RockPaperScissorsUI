@@ -78,7 +78,7 @@ function game(playerSelection) {
         compResult.style.opacity = '100';
 
         // play game sound
-        new Audio('/sounds/kick.wav').play();
+        new Audio('./sounds/kick.wav').play();
 
         switch (playRound(playerSelection, computerSelection)) {
             case "win":
