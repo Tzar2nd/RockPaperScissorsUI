@@ -1,96 +1,206 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Rock Scissors Scissors</title>
-    <meta charset="UTF-8"/>
+    <style>
+        html {
+            font-size: 10px;
+            font-family: "Copperplate";
+            color: white;
+            background-image: url("armor.jpg");
+            background-size: cover;
+            text-shadow: 0 0 .5rem black;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #game-container {
+            display: flex;
+            justify-content: center;
+            margin-left: -25rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 5rem 0 0 0;
+            font-size: 3.2rem;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 2rem 0 8rem 0;
+            opacity: 0;
+            animation-delay: 2s;
+        }
+
+        h1.fade-in,
+
+        .fade-in {
+            animation-name: fade-in;
+            animation-duration: 800ms;
+            animation-timing-function: ease-in;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .player-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: right;
+        }
+
+        .button {
+            border: .4rem solid white;
+            border-radius: .5rem;
+            margin: 1rem;
+            min-width: 75px;
+            height: 62px;
+            text-align: center;
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 .5rem black;
+            display: flex;
+            cursor: pointer; 
+            transition: all 0.07s ease;
+        }
+
+        .button:hover {
+            border: .4rem solid red;
+            transform: scale(1.1);
+        }
+
+        .compbutton {
+            border: .4rem solid white;
+            border-radius: .5rem;
+            margin: 1rem;
+            min-width: 75px;
+            height: 62px;
+            text-align: center;
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 .5rem black;
+            display: flex;
+            transition: all 0.07s ease;
+        }
+
+        #rock {
+            background-image: url("/icons/rock.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 75%;
+        }
+
+        #paper {
+            background-image: url("/icons/paper.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 75%;
+        }
+
+        #scissors {
+            background-image: url("/icons/scissors.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 75%;
+        }
+
+        .vl {
+            border-left: 6px dashed white;
+            height: auto;
+            margin-left: 3rem;
+            margin-right: 3rem;
+        }
+
+        #computer-result {
+            visibility: hidden;
+            opacity: 0;
+            margin: 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 75%;
+            transition: visibility 0.25s linear, 0.25s ease-in-out;
+        }
+
+        .scores-container {
+            display: flex;
+            justify-content: center;
+            font-size: 6.4rem;
+            margin-top: 2rem;
+            margin-left: -13rem;
+        }
+
+        #player-score {
+            margin-right: 10rem;
+        }
+
+        #computer-score {
+            margin-left: 12rem;
+        }
+
+        #result-message {
+            display: flex;
+            justify-content: center;
+            font-size: 2.4rem;
+            margin: 2rem 0 0 0;
+        }
+
+        #play-again-button {
+            visibility: hidden;
+            margin: 2rem auto 2rem auto;
+            border: .4rem solid white;
+            padding: 1rem;
+            border-radius: .5rem;
+            width:fit-content; 
+            text-align: center;
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 .5rem black;
+            cursor: pointer; 
+            transition: all 0.07s ease;
+        }
+
+
+    </style>
+
+    <title>Rock, Paper, Scissors Championship</title>
+    <meta charset="UTF-8" />
 </head>
+
 <body>
-    <script>
-        function computerPlay() {
-            let compPlay = Math.floor(Math.random() * 3 + 1)
-            
-            switch(compPlay) {
-                case 1:
-                    return "Rock";
-                case 2:
-                    return "Paper";
-                case 3:
-                    return "Scissors";
-            }
-        }
-
-        function capitalize(s) {
-            return s = s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-        }
-
-        function playRound(playerSelection, computerSelection) {
-            playerSelection = capitalize(playerSelection);
-
-            if (playerSelection == "Rock" && computerSelection == "Rock") {
-                console.log("Draw! Rock vs Rock. Boom");
-                return("draw");
-            }
-            
-            if (playerSelection == "Rock" && computerSelection == "Paper") {
-                console.log("You lose! Paper eats Rock");
-                return("lose");
-            }
-
-            if (playerSelection == "Rock" && computerSelection == "Scissors") {
-                console.log("You win! Rock blunts Scissors");
-                return("win");
-            }
-
-            if (playerSelection == "Paper" && computerSelection == "Rock") {
-                console.log("You win! Paper eats Rock");
-                return("win");
-            }
-
-            if (playerSelection == "Paper" && computerSelection == "Paper") {
-                console.log("Draw! Paper vs Paper. Crinkly");
-                return("draw");
-            }
-
-            if (playerSelection == "Paper" && computerSelection == "Scissors") {
-                console.log("You lose! Paper snapped up by Scissors");
-                return("lose");
-            }
-
-            if (playerSelection == "Scissors" && computerSelection == "Rock") {
-                console.log("You lose! Scissors blunted by Rock");
-                return("lose");
-            }
-
-            if (playerSelection == "Scissors" && computerSelection == "Paper") {
-                console.log("You win! Scissors eats up Paper");
-                return("win");
-            }
-            
-            if (playerSelection == "Scissors" && computerSelection == "Scissors") {
-                console.log("Draw! Scissors *ching ching* Scissors");
-                return("draw");
-            }
-        }
-
-        function game(playerSelection) {
-            let compScore = 0;
-            let playerScore = 0;
-            
-            for(let g = 0; g < 5; g++ ) {
-                switch (playRound(playerSelection, computerPlay())) {
-                    case "win":
-                        playerScore += 1; 
-                        break;
-                    case "lose":
-                        compScore += 1;
-                        break;
-                }
-            }
-
-            console.log("Scores on the doors " + playerScore + " : " + compScore);
-        }
-        
-        game(prompt("Rock, Paper or Scissors? Huh?" ));  
-    </script>
+    <h1 class='fade-in'>Rock, Paper, Scissors Championship</h1>
+    <h2 class='fade-in'>Choose your weapon to continue! First to 5 wins...</h2>
+    <div id='game-container'>
+        <div class='player-button-container'>
+            <div id='rock' class='button' button-key='Rock'></div>
+            <div id='paper' class='button' button-key='Paper'></div>
+            <div id='scissors' class='button' button-key='Scissors'></div>
+        </div>
+        <div class=vl></div>
+        <div id='computer-result' class='compbutton'></div>
+    </div>
+    <div class ='scores-container'>
+        <div id='player-score' class='score'>0</div>
+        <div id='computer-score' class='score'>0</div>
+    </div>
+    <div>
+        <div id='result-message'></div>
+    </div>
+    <div>
+        <div id='play-again-button'><span>Play!</span></div>
+    </div>
 </body>
+
 </html>
+<script src="rockPaperScissors.js"></script>
