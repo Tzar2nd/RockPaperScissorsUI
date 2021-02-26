@@ -73,7 +73,7 @@ function game(playerSelection) {
         // display computer icon
         computerSelection = computerPlay();
         compResult = document.getElementById('computer-result')
-        compResult.style.backgroundImage = "url(/icons/" + computerSelection.toLowerCase() + ".svg)";
+        compResult.style.backgroundImage = "url('./icons/" + computerSelection.toLowerCase() + ".svg')";
         compResult.style.visibility = 'visible';
         compResult.style.opacity = '100';
 
@@ -124,7 +124,7 @@ function resetGame() {
     document.getElementById('result-message').textContent = "";
 
     compResult = document.getElementById('computer-result')
-    compResult.style.backgroundImage = "url(/icons/" + computerSelection.toLowerCase() + ".svg)";
+    compResult.style.backgroundImage = "url('./icons/" + computerSelection.toLowerCase() + ".svg')";
     compResult.style.visibility = 'hidden';
     compResult.style.opacity = '0';
 }
